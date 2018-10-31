@@ -53,14 +53,11 @@ def getGpioSignal(device_id, speed):
     for accessory in accessories:
         accessory_id = accessory["id"]
         if accessory_id == device_id:
-            gpio_start = accessory["gpio_start"]
-            gpio_end = accessory["gpio_end"]
             gpio_speeds = accessory["gpio_speeds"]
             for gpio in gpio_speeds:
                 gpio_speed = gpio["speed"]
-                gpio_signal = gpio["signal"]
                 if gpio_speed == speed:
-                    return gpio_start + gpio_signal + gpio_end
+                    return gpio["signal"]
     return None
 
 def gpioSend(signal):

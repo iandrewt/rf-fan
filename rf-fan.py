@@ -1,5 +1,6 @@
 import json
 import time
+import argparse
 import RPi.GPIO as GPIO
 from flask import Flask, request, jsonify
 
@@ -93,4 +94,9 @@ def gpioSend(signal):
     GPIO.cleanup()
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-c", "--config", help="Specify config file")
+    args = parser.parse_args()
+    if args.config:
+        config_file_path = args.config
     app.run()
